@@ -4,5 +4,6 @@
 
 Files:
  - castProxy.py --> The Programing Task itself;
+  - usage: castProxy.py --log=[info|debug]
  - castProxy_stripedDown.py --> Striped-down version without logging and less comments;
  - echo_cast.py --> MyEcho server;
