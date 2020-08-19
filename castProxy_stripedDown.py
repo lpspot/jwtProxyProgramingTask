@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-  castProxy.py: Luis Pereia aproach to CastLabs's python programming task https://github.com/castlabs/python_programming_task
-  Note: striped down version without logging and less comments! 
+  castProxy.py: Luis Pereia approach to CastLabs's python programming task https://github.com/castlabs/python_programming_task
+  Note: striped down version without logging and less comments!
   upstream server: https://postman-echo.com or my own
   Libraries documentation:
 	  http.server -> https://docs.python.org/3/library/http.server.html
@@ -31,22 +31,24 @@ class handler(BaseHTTPRequestHandler):
         for key in self.headers:
             if (key != 'Content-Length' and key != 'Host'):
                 newHeaders[key] = self.headers[key]
-        if (type.lower() == 'post'):
-            newHeaders= {**newHeaders, **genJwtHeader()}
+        if type.lower() == 'post': newHeaders = {**newHeaders, **genJwtHeader()}
         try:
             resp = requests.request(type.lower(), fwUrl, headers=newHeaders, verify=False)
-            if (resp.status_code >= 100 and resp.status_code < 300):
-                self.send_response(resp.status_code)
-                for key, value in resp.headers.items():
-                    self.send_header(key, value)
-                self.end_headers()
-                self.wfile.write(resp.content)
-            elif (resp.status_code >= 300 and resp.status_code < 400): #Not allowing redirects!
-                self.send_error(500)
-            elif (resp.status_code >= 400 ):
-                self.send_error(resp.status_code)
-        except:
-            self.send_response(500)
+        except requests.exceptions.RequestException as e:
+            self.send_error(500)
+            logging.error("Something went wrong requests Error: %s", e)
+            raise SystemExit(e)
+        if (resp.status_code >= 100 and resp.status_code < 300):
+            self.send_response(resp.status_code)
+            for key, value in resp.headers.items():
+                self.send_header(key, value)
+            self.end_headers()
+            self.wfile.write(resp.content)
+        elif (resp.status_code >= 300 and resp.status_code < 400): #Not allowing redirects!
+            self.send_error(500)
+        elif (resp.status_code >= 400 ):
+            self.send_error(resp.status_code)
+
     def do_POST(self):
         self.forward('POST')
     def do_GET(self):
