@@ -1,5 +1,5 @@
-# Luis's approach to CastLabs JWT Proxy Programing Task
- My approach to CastLabs maciejstromich JWT Proxy programming task
+# LP approach to CastLabs JWT Proxy Programing Task
+ My approach to maciejstromich's CastLabs JWT Proxy programming task https://github.com/castlabs/python_programming_task
  - Without Docker/Makefile
 
 Files:
