@@ -1,4 +1,4 @@
-# jwtProxyProgramingTask
+# Luis's approach to CastLabs JWT Proxy Programing Task
  My approach to CastLabs maciejstromich JWT Proxy programming task
  - Without Docker/Makefile
 
