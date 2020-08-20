@@ -5,6 +5,6 @@
 ## Files:
  - castProxy.py --> The Programing Task itself;
     - Run: castProxy.py --log=[info|debug]
-    - Usage: `curl --location --request POST 'http://localhost:81/whatever' --header 'testOrig: something' --header 'Content-Type: application/json' --data-raw '{"originalBodyData":"payload"}'`
+    - Usage: `curl -X POST 'http://localhost:81/whatever' --header 'testOrig: something'`
  - castProxy_stripedDown.py --> Striped-down version without logging and less comments;
  - echo_cast.py --> MyEcho server;
