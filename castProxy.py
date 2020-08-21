@@ -71,7 +71,7 @@ class handler(BaseHTTPRequestHandler):
     def do_PUT(self):
         self.forward('PUT')
 
-def runServer(host="localhost", port=81):
+def runServer(host="0.0.0.0", port=81):
     logging.info('HTTP Server on %s:%s', host, str(port))
     webserver = HTTPServer((host, port), handler)
     try:
