@@ -24,7 +24,7 @@ run-py-debug:
 
 build:
 	@echo "Building the Docker image"
-	docker build .
+	docker build -t jwtproxyprogramingtask_castproxy .
 	@echo "Docker image built"
 
 run:
